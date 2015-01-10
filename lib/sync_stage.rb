@@ -2,21 +2,6 @@
 
 require 'yaml'
 
-STAGING = { dbuser: 'sprachreisen',
-            db: 'sprr_staging', 
-            host: 'staging.sprachreisen.org', 
-            user: 'kompass',
-            shared_dir: '/var/www/staging.sprachreisen.org/shared'
-          }
-
-PRODUCTION = { dbuser: 'sprachreisen', 
-               db: 'sprr_production', 
-               host: 'www.sprachreisen.org', 
-               user: 'kompass',
-               shared_dir: '/var/www/www.sprachreisen.org/shared'
-              }
-
-
 class SyncStage
 
   def self.say_hi
