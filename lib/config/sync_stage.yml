@@ -1,0 +1,13 @@
+:production:
+  :host: www.example.com
+  :user: deploymentuser
+  :db: app_production
+  :dbuser: user
+  :shared_dir: /var/www/www.example.com/shared
+
+:staging:
+  :host: staging.example.com
+  :user: deploymentuser
+  :db: app_staging
+  :dbuser: user
+  :shared_dir: /var/www/staging.example.com/shared

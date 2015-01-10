@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+require 'sync_stage'
+require 'getoptlong'
+
+
+opts = GetoptLong.new(
+  [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+  [ '--init', '-i', GetoptLong::NO_ARGUMENT ],
+  [ '--run', '-r', GetoptLong::NO_ARGUMENT ],
+  [ '--destination', '-d', GetoptLong::REQUIRED_ARGUMENT ],
+  [ '--from', '-f', GetoptLong::REQUIRED_ARGUMENT ],
+  [ '--type', '-t', GetoptLong::REQUIRED_ARGUMENT ]
+)
+
+app = nil
+init = nil
+run = false
+destination = nil
+source = nil
+
+
+opts.each do |opt, arg|
+  case opt
+  when '--help'
+    puts <<-EOF
+      sync_stage [OPTION] 
+          
+      -h, --help:
+      show help
+
+      -t TYPE, --type TYPE:
+      supply type op operation  
+      either: dbcopy | dbsync | assetcopy | assetsync
+      default is dbcopy
+
+      -f FROM, --from FROM:
+      set copy source: one of staging or production
+
+      -d TO, --destination TO:
+      set destination to copy to: either staging or production
+
+
+      --init, -i:
+      initializes sync_stage config in current directory
+      or in --dir if --dir is given
+      
+      --app DIR, -a DIR:
+      use given Directory 
+    EOF
+  when '--app'
+    app = arg
+  when '--init'
+    puts "init arg"
+    init = true 
+  when '--run'
+    puts "run arg"
+    run = true
+  when '--destination'
+    puts "destinatin arg: " << arg
+    destination = arg
+  when '--from'
+    puts "from arg: " << arg
+    source = arg
+  end
+end
+
+#if ARGV.length == 0
+#end
+
+
+st = SyncStage.new(app||Dir.pwd, init)
+if run 
+  st.print_config
+end
+
+
+
