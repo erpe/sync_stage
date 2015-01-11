@@ -28,6 +28,7 @@ adopt this file to your needs.
 sync_stage -r 
 ```
 dumps your database and packs your shared/public and copies it over to the destination host
+
 running `sync_stage` without `-r` complains. 
 
 just to be sure...
@@ -38,7 +39,9 @@ sync_stage -r --restore
 ```
 
 dumps database, packs shared/public, copies it to destination, 
+
 restores postgres dump, and unpacks shared/public to destinations shared/public
+
 restoring is done by `sudo -u postgres`
 
 ```
