@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'SyncStage'
-  s.version     = '0.0.1'
+  s.version     = '0.1.0'
   s.licenses    = ['GPLv3']
   s.summary     = "Sync your Rails-App data back from production to staging"
   s.description = "dumps and restores postgres database and packs shared/public over to staging server"

@@ -40,7 +40,7 @@ restores postgres dump, and unpacks shared/public to destinations shared/public
 restoring is done by `sudo -u postgres`
 
 ```
-sync_stage -r --restores --explain
+sync_stage -r --restore --explain
 ```
 
 prints out what would happen, but not actually executes anything.
