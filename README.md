@@ -11,7 +11,7 @@ This helper enables you to sync your typical Rails-App between given staging-ser
 
 ## Install
 
-`gem install sync_stage`
+`gem install SyncStage`
 
 ## Example:
 
