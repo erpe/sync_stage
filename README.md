@@ -6,12 +6,29 @@ The usual Rails deployment is done via capistrano and a specific deployment user
 
 This helper enables you to sync your typical Rails-App between given staging-servers.
 
+
+## Install
+
+`gem install sync_stage`
+
 ## Example:
+
+```
+cd /source/dir/rails_app
+sync_stage -i
+```
+initializes `sync_stage.yml` in given directory.
+
+adopt this file to your needs.
+
 
 ```
 sync_stage -r 
 ```
 dumps your database and packs your shared/public and copies it over to the destination host
+running `sync_stage` without `-r` complains. 
+
+just to be sure...
 
 
 ```
@@ -29,13 +46,12 @@ sync_stage -r --restores --explain
 prints out what would happen, but not actually executes anything.
 
 
-
 ## Prerequisites
 
-* expects your app to be deployed via capistrano
+* expects your app to be deployed via capistrano (or at least has some shared/public directory)
 * expects only postgres database
 * expects you have a deployment user
-* expects you're deployment user is a sudoer
+* expects your deployment user is a sudoer
 * expects your postgres password is available via .pgpass (see:  http://www.postgresql.org/docs/9.3/static/libpq-pgpass.html )
 
 
