@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/SyncStage.svg)](http://badge.fury.io/rb/SyncStage)
+[![Gem Version](https://badge.fury.io/rb/sync_stage.svg)](http://badge.fury.io/rb/SyncStage)
 
 # SyncStage
 Syncs back your Rails-app based production data to staging (or anywhere and vice versa)
@@ -11,7 +11,11 @@ This helper enables you to sync your typical Rails-App between given staging-ser
 
 ## Install
 
-`gem install SyncStage`
+`gem install sync_stage`
+
+or use in Gemfile: 
+
+`gem 'sync_stage'`
 
 ## Example:
 

@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'SyncStage'
+  s.name        = 'sync_stage'
   s.version     = '0.1.0'
   s.licenses    = ['GPLv3']
   s.summary     = "Sync your Rails-App data back from production to staging"
