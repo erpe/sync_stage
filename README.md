@@ -1,6 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/SyncStage.svg)](http://badge.fury.io/rb/SyncStage)
 
-# sync_stage
+# SyncStage
 Syncs back your Rails-app based production data to staging (or anywhere and vice versa)
 
 
