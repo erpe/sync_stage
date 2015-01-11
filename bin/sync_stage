@@ -2,23 +2,22 @@
 
 require 'sync_stage'
 require 'getoptlong'
-
+require 'ostruct'
 
 opts = GetoptLong.new(
   [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
   [ '--init', '-i', GetoptLong::NO_ARGUMENT ],
   [ '--run', '-r', GetoptLong::NO_ARGUMENT ],
-  [ '--destination', '-d', GetoptLong::REQUIRED_ARGUMENT ],
-  [ '--from', '-f', GetoptLong::REQUIRED_ARGUMENT ],
-  [ '--type', '-t', GetoptLong::REQUIRED_ARGUMENT ],
+  [ '--restore', GetoptLong::NO_ARGUMENT ],
+  [ '--explain', GetoptLong::NO_ARGUMENT],
   [ '--app', '-a', GetoptLong::REQUIRED_ARGUMENT ]
 )
 
 app = nil
 init = nil
-run = false
-destination = nil
-source = nil
+run = nil
+restore = nil
+explain = nil
 
 if ARGV.length == 0
   puts "missing argument try --help" 
@@ -33,24 +32,24 @@ opts.each do |opt, arg|
       -h, --help:
       show help
 
-      -t TYPE, --type TYPE:
-      supply type op operation  
-      either: dbcopy | dbsync | assetcopy | assetsync
-      default is dbcopy
-
-      -f FROM, --from FROM:
-      set copy source: one of staging or production
-
-      -d TO, --destination TO:
-      set destination to copy to: either staging or production
-
-
       --init, -i:
       initializes sync_stage config in current directory
       or in --dir if --dir is given
       
+      --explain:
+      print out what would happen, but dont actually run the commands
+
+      --run, -r:
+      actually start the dump, pack, copy over to destination
+
+      
       --app DIR, -a DIR:
       use given Directory 
+
+      --restore:
+      pg_restore the database and unpack shared/public
+      on destination system
+
     EOF
     exit 0
   when '--app'
@@ -59,10 +58,10 @@ opts.each do |opt, arg|
     init = true
   when '--run'
     run = true
-  when '--destination'
-    destination = arg
-  when '--from'
-    source = arg
+  when '--restore'
+    restore = true
+  when '--explain'
+    explain = true
   end
 end
 
@@ -73,7 +72,8 @@ if init && run
 end
 
 if init 
-  st = SyncStage::Worker.new(app||Dir.pwd, init)
+  cfg = OpenStruct.new(app: app||Dir.pwd, init: true)
+  st = SyncStage::Worker.new(cfg)
   exit 0
 end
 
@@ -81,8 +81,7 @@ if app && !run
   puts "missing argument -r to run"
 end
 
-
 if run
-  st = SyncStage::Worker.new(app||Dir.pwd)
-  st.print_config
+  cfg = OpenStruct.new(app: app||Dir.pwd, run: run, restore: restore, explain: explain)
+  st = SyncStage::Worker.new(cfg)
 end
