@@ -54,6 +54,11 @@ sync_stage -r --restore --explain
 
 prints out what would happen, but not actually executes anything.
 
+## Troubleprevention
+
+Try to execute everey single command printed by `sync_stage -r --restore --explain` manually. Get rid of ssh-key failures or warnings (hint `ssh-keygen -R your.host.name` removes an errornous key if you fiddled with hostnames..).
+`sync_stage` will halt if any such error occurs.
+
 
 ## Prerequisites
 
