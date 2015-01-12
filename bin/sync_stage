@@ -50,6 +50,15 @@ opts.each do |opt, arg|
       pg_restore the database and unpack shared/public
       on destination system
 
+      *To prevent trouble* - in case it does not work:
+      
+      run 
+      
+      sync_stage -r --restore --explain
+
+      and run every single command manually. Make sure it works manually. 
+
+
     EOF
     exit 0
   when '--app'
