@@ -67,5 +67,5 @@ Try to execute everey single command printed by `sync_stage -r --restore --expla
 * expects you have a deployment user
 * expects your deployment user is a sudoer
 * expects your postgres password is available via .pgpass (see:  http://www.postgresql.org/docs/9.3/static/libpq-pgpass.html )
-
+' your deployment user needs to have a `ForwardAgent yes` in .ssh/config
 
